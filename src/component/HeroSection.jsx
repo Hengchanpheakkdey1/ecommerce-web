@@ -107,8 +107,8 @@ export default function HeroSection() {
       <div className="relative z-10 -mt-16 sm:-mt-36 md:-mt-56 w-full flex items-end justify-center">
 
         {/* ── Pikachu — left ── */}
-        <div className="relative hidden md:flex items-end justify-center flex-shrink-0"
-          style={{ width: 'clamp(150px,18vw,270px)', height: 'clamp(200px,26vw,380px)', marginRight: '-1.5vw', zIndex: 8, opacity: .92 }}>
+        <div className="relative flex items-end justify-center flex-shrink-0"
+          style={{ width: 'clamp(75px,18vw,270px)', height: 'clamp(105px,26vw,380px)', marginRight: '-1.5vw', zIndex: 8, opacity: .92 }}>
           <div className="pika-orb absolute inset-0 flex items-center justify-center pointer-events-none">
             <div style={{
               width: '82%', height: '82%', borderRadius: '50%',
@@ -174,8 +174,8 @@ export default function HeroSection() {
         </div>
 
         {/* ── Bulbasaur — right ── */}
-        <div className="relative hidden md:flex items-end justify-center flex-shrink-0"
-          style={{ width: 'clamp(150px,18vw,270px)', height: 'clamp(200px,26vw,380px)', marginLeft: '-1.5vw', zIndex: 8, opacity: .92 }}>
+        <div className="relative flex items-end justify-center flex-shrink-0"
+          style={{ width: 'clamp(75px,18vw,270px)', height: 'clamp(105px,26vw,380px)', marginLeft: '-1.5vw', zIndex: 8, opacity: .92 }}>
           <div className="bulba-orb absolute inset-0 flex items-center justify-center pointer-events-none">
             <div style={{
               width: '82%', height: '82%', borderRadius: '50%',
