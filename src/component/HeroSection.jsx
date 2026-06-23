@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 
-const MEWTWO = 'https://www.vhv.rs/dpng/d/419-4191631_image-sonicwiki-png-mewtwo-transparent-png-download.png'
+const HERO_MON = 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/025.png'
 
 export default function HeroSection() {
   return (
@@ -12,16 +12,21 @@ export default function HeroSection() {
           50%       { transform: translateY(-20px) scale(1.01); }
         }
         @keyframes glow-pulse {
-          0%, 100% { opacity: 0.6; transform: scale(1); }
-          50%       { opacity: 1;   transform: scale(1.08); }
+          0%, 100% { opacity: 0.7; transform: scale(1); }
+          50%       { opacity: 1;   transform: scale(1.14); }
         }
+        @keyframes ring-cw  { from{transform:rotate(0deg)}   to{transform:rotate(360deg)} }
+        @keyframes ring-ccw { from{transform:rotate(0deg)}   to{transform:rotate(-360deg)} }
         .mewtwo-img {
           animation: mewtwo-float 5s ease-in-out infinite;
           filter:
-            drop-shadow(0 0 30px rgba(168,85,247,0.22))
-            drop-shadow(0 20px 70px rgba(109,40,217,0.12));
+            drop-shadow(0 0 28px rgba(253,224,71,0.9))
+            drop-shadow(0 0 65px rgba(250,204,21,0.55))
+            drop-shadow(0 20px 60px rgba(234,179,8,0.3));
         }
         .mewtwo-glow { animation: glow-pulse 5s ease-in-out infinite; }
+        .ring-cw     { animation: ring-cw  18s linear infinite; }
+        .ring-ccw    { animation: ring-ccw 26s linear infinite; }
       `}</style>
 
       <div className="flex flex-col md:flex-row" style={{ minHeight: '100svh' }}>
@@ -95,36 +100,44 @@ export default function HeroSection() {
 
         {/* ── Right — Mewtwo ── */}
         <div className="relative w-full md:w-[54%] flex items-center justify-center
-                        min-h-[55vw] sm:min-h-[45vw] md:min-h-0 overflow-hidden">
+                        min-h-[55vw] sm:min-h-[45vw] md:min-h-0">
 
           {/* Ambient glow */}
           <div
             className="mewtwo-glow absolute inset-0 pointer-events-none flex items-center justify-center"
             style={{
               background:
-                'radial-gradient(ellipse 70% 70% at 52% 50%, rgba(216,180,254,0.2) 0%, rgba(168,85,247,0.06) 55%, transparent 74%)',
+                'radial-gradient(ellipse 72% 72% at 52% 50%, rgba(253,224,71,0.28) 0%, rgba(250,204,21,0.1) 50%, transparent 74%)',
             }}
           />
 
-          {/* Outer ring */}
-          <div className="absolute pointer-events-none" style={{
+          {/* Outer spinning ring */}
+          <div className="ring-cw absolute pointer-events-none flex items-center justify-center" style={{
             width: 'clamp(260px,46vw,560px)', height: 'clamp(260px,46vw,560px)',
-            borderRadius: '50%', border: '1px solid rgba(216,180,254,0.2)',
-          }} />
+          }}>
+            <div style={{ width:'100%', height:'100%', borderRadius:'50%', border:'1.5px dashed rgba(250,204,21,0.45)' }} />
+          </div>
 
-          {/* Inner ring */}
+          {/* Inner counter-spinning ring */}
+          <div className="ring-ccw absolute pointer-events-none flex items-center justify-center" style={{
+            width: 'clamp(180px,32vw,390px)', height: 'clamp(180px,32vw,390px)',
+          }}>
+            <div style={{ width:'100%', height:'100%', borderRadius:'50%', border:'1.5px dashed rgba(234,179,8,0.35)' }} />
+          </div>
+
+          {/* Static solid ring */}
           <div className="absolute pointer-events-none" style={{
-            width: 'clamp(170px,31vw,380px)', height: 'clamp(170px,31vw,380px)',
-            borderRadius: '50%', border: '1px solid rgba(216,180,254,0.12)',
+            width: 'clamp(310px,54vw,640px)', height: 'clamp(310px,54vw,640px)',
+            borderRadius: '50%', border: '1px solid rgba(253,224,71,0.15)',
           }} />
 
-          {/* Mewtwo */}
+          {/* Pikachu */}
           <img
-            src={MEWTWO}
-            alt="Mewtwo"
+            src={HERO_MON}
+            alt="Pikachu"
             draggable={false}
             className="mewtwo-img relative z-10 select-none"
-            style={{ width: 'clamp(180px,38vw,520px)', height: 'auto' }}
+            style={{ width: 'clamp(240px,48vw,640px)', height: 'auto' }}
           />
 
           {/* Bottom fade into white */}
