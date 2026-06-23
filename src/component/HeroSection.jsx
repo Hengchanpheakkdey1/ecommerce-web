@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 export default function HeroSection() {
   return (
     <section
-      className="relative min-h-[88vh] flex flex-col items-center overflow-hidden pt-10 pb-0"
+      className="relative min-h-[65vh] md:min-h-[88vh] flex flex-col items-center overflow-hidden pt-4 md:pt-10 pb-0"
       style={{ backgroundColor: '#d5e0e8' }}
     >
       {/* Radial glow behind hero */}
@@ -40,16 +40,16 @@ export default function HeroSection() {
       </svg>
 
       {/* Hero heading */}
-      <div className="relative z-10 text-center px-4 mt-6">
+      <div className="relative z-10 text-center px-4 mt-3 md:mt-6">
         <h1
           className="font-black uppercase leading-none text-gray-900"
-          style={{ fontSize: 'clamp(2.8rem, 7vw, 6.5rem)', letterSpacing: '-0.03em' }}
+          style={{ fontSize: 'clamp(2rem, 7vw, 6.5rem)', letterSpacing: '-0.03em' }}
         >
           GEAR UP EVERY SEASON
         </h1>
         <h1
           className="font-black uppercase leading-none"
-          style={{ fontSize: 'clamp(2.8rem, 7vw, 6.5rem)', letterSpacing: '-0.03em' }}
+          style={{ fontSize: 'clamp(2rem, 7vw, 6.5rem)', letterSpacing: '-0.03em' }}
         >
           <span className="text-gray-900">EVERY </span>
           <span className="font-black italic" style={{ fontStyle: 'italic', color: 'transparent', WebkitTextStroke: '2.5px #111' }}>
@@ -61,16 +61,16 @@ export default function HeroSection() {
       </div>
 
       {/* CTA Buttons */}
-      <div className="relative z-20 flex items-center gap-4 mt-7">
+      <div className="relative z-20 flex items-center gap-3 mt-5 md:mt-7">
         <Link
           to="/shop"
-          className="bg-gray-900 text-white text-[11px] font-bold tracking-widest px-8 py-3.5 rounded-full hover:bg-black transition-colors"
+          className="bg-gray-900 text-white text-[10px] md:text-[11px] font-bold tracking-widest px-6 md:px-8 py-3 md:py-3.5 rounded-full hover:bg-black transition-colors"
         >
           SHOP NOW
         </Link>
         <Link
           to="/shop"
-          className="bg-white text-gray-900 text-[11px] font-bold tracking-widest px-8 py-3.5 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors"
+          className="bg-white text-gray-900 text-[10px] md:text-[11px] font-bold tracking-widest px-6 md:px-8 py-3 md:py-3.5 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors"
         >
           EXPLORE ALL
         </Link>
@@ -104,7 +104,7 @@ export default function HeroSection() {
         .ring-slow { animation:ring-cw  30s linear infinite; }
       `}</style>
 
-      <div className="relative z-10 -mt-56 w-full flex items-end justify-center">
+      <div className="relative z-10 -mt-16 sm:-mt-36 md:-mt-56 w-full flex items-end justify-center">
 
         {/* ── Pikachu — left ── */}
         <div className="relative hidden md:flex items-end justify-center flex-shrink-0"
@@ -127,7 +127,7 @@ export default function HeroSection() {
 
         {/* ── Nidorina — center star ── */}
         <div className="relative flex items-end justify-center flex-shrink-0"
-          style={{ width: 'clamp(270px,32vw,450px)', height: 'clamp(330px,42vw,550px)', zIndex: 10 }}>
+          style={{ width: 'clamp(200px,52vw,450px)', height: 'clamp(250px,60vw,550px)', zIndex: 10 }}>
 
           <div className="nido-orb absolute inset-0 flex items-center justify-center pointer-events-none">
             <div style={{

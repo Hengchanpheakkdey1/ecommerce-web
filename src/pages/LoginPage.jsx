@@ -69,7 +69,7 @@ export default function LoginPage() {
         .ring-ccw { animation: ring-spin-rev  24s linear infinite; }
       `}</style>
 
-      <div className="flex h-screen w-screen overflow-hidden">
+      <div className="flex min-h-screen md:h-screen w-screen overflow-hidden">
 
         {/* ── Left panel — Charizard ── */}
         <div
@@ -156,10 +156,19 @@ export default function LoginPage() {
         </div>
 
         {/* ── Right panel — form ── */}
-        <div className="w-full md:w-[55%] bg-white flex flex-col">
+        <div className="w-full md:w-[55%] bg-white flex flex-col overflow-y-auto">
 
-          {/* Top-right link */}
-          <div className="flex justify-end items-center px-8 pt-6 pb-2">
+          {/* Mobile-only brand header */}
+          <div className="md:hidden flex items-center justify-between px-5 pt-5 pb-4 border-b border-gray-100">
+            <div className="flex items-center gap-2.5">
+              <LogoIcon />
+              <span className="text-xl font-black text-gray-900 tracking-tighter">John Cena</span>
+            </div>
+            <Link to="/signup" className="text-xs font-semibold text-sky-500 hover:underline">Sign up</Link>
+          </div>
+
+          {/* Top-right link — desktop only */}
+          <div className="hidden md:flex justify-end items-center px-8 pt-6 pb-2">
             <span className="text-sm text-gray-400">
               Don't have an account?{' '}
               <Link to="/signup" className="font-semibold text-gray-900 hover:underline underline-offset-2">
@@ -169,16 +178,16 @@ export default function LoginPage() {
           </div>
 
           {/* Form — vertically centered */}
-          <div className="flex-1 flex items-center justify-center px-8 pb-12">
+          <div className="flex-1 flex items-center justify-center px-5 sm:px-8 py-8 md:pb-12">
             <div className="w-full max-w-[420px]">
 
-              <h1 className="text-[2.6rem] font-bold tracking-tight text-gray-900 mb-8 leading-none">
+              <h1 className="text-[2rem] sm:text-[2.6rem] font-bold tracking-tight text-gray-900 mb-6 md:mb-8 leading-none">
                 Sign in
               </h1>
 
               {/* Social */}
               <p className="text-sm text-gray-400 mb-3">Sign in with Open account</p>
-              <div className="flex gap-3 mb-6">
+              <div className="flex gap-2 sm:gap-3 mb-5 md:mb-6">
                 <button type="button" className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 border border-gray-200 rounded-xl hover:bg-gray-50 active:scale-[0.98] transition-all text-sm font-medium text-gray-700 cursor-pointer">
                   <svg width="17" height="17" viewBox="0 0 18 18">
                     <path d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 0 0 2.38-5.88c0-.57-.05-.66-.15-1.18z" fill="#4285F4"/>
