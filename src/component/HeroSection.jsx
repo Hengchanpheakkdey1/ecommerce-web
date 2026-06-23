@@ -35,10 +35,10 @@ export default function HeroSection() {
         <div className="relative z-10 flex flex-col justify-center
                         w-full md:w-[46%]
                         px-7 sm:px-12 md:px-14 lg:px-20
-                        pt-16 pb-10 md:py-0">
+                        pt-8 pb-5 md:py-0">
 
           {/* Label pill */}
-          <div className="inline-flex items-center gap-2 mb-8 self-start">
+          <div className="inline-flex items-center gap-2 mb-4 md:mb-8 self-start">
             <span className="w-1.5 h-1.5 rounded-full bg-gray-900 flex-shrink-0" />
             <span className="text-[11px] font-semibold tracking-[0.18em] text-gray-400 uppercase">
               New Season · 2025
@@ -47,7 +47,7 @@ export default function HeroSection() {
 
           {/* Heading */}
           <h1
-            className="font-black leading-[0.88] tracking-tight text-gray-900 mb-6"
+            className="font-black leading-[0.88] tracking-tight text-gray-900 mb-3 md:mb-6"
             style={{ fontSize: 'clamp(2.8rem, 5.2vw, 6.5rem)' }}
           >
             Gear Up<br />
@@ -56,15 +56,15 @@ export default function HeroSection() {
           </h1>
 
           {/* Body text */}
-          <p className="text-gray-400 text-sm md:text-[15px] leading-relaxed mb-9 max-w-[300px]">
+          <p className="text-gray-400 text-sm md:text-[15px] leading-relaxed mb-5 md:mb-9 max-w-[300px]">
             Premium athletic wear built for every world you conquer. Performance meets style.
           </p>
 
           {/* Buttons */}
-          <div className="flex items-center gap-5 mb-12 md:mb-16">
+          <div className="flex items-center gap-4 mb-6 md:mb-16">
             <Link
               to="/shop"
-              className="bg-gray-900 text-white text-sm font-semibold px-7 py-3.5 rounded-full hover:bg-black transition-colors"
+              className="bg-gray-900 text-white text-sm font-semibold px-6 md:px-7 py-3 md:py-3.5 rounded-full hover:bg-black transition-colors"
             >
               Shop Now
             </Link>
@@ -80,27 +80,27 @@ export default function HeroSection() {
           </div>
 
           {/* Stats row */}
-          <div className="flex items-center gap-5 pt-7 border-t border-gray-100">
+          <div className="flex items-center gap-4 md:gap-5 pt-5 md:pt-7 border-t border-gray-100">
             <div>
-              <p className="text-xl font-black text-gray-900">2,400+</p>
+              <p className="text-lg md:text-xl font-black text-gray-900">2,400+</p>
               <p className="text-[10px] font-medium text-gray-400 tracking-widest uppercase mt-0.5">Products</p>
             </div>
             <div className="w-px h-7 bg-gray-100" />
             <div>
-              <p className="text-xl font-black text-gray-900">12</p>
+              <p className="text-lg md:text-xl font-black text-gray-900">12</p>
               <p className="text-[10px] font-medium text-gray-400 tracking-widest uppercase mt-0.5">Categories</p>
             </div>
             <div className="w-px h-7 bg-gray-100" />
             <div>
-              <p className="text-xl font-black text-gray-900">Free</p>
+              <p className="text-lg md:text-xl font-black text-gray-900">Free</p>
               <p className="text-[10px] font-medium text-gray-400 tracking-widest uppercase mt-0.5">Shipping</p>
             </div>
           </div>
         </div>
 
-        {/* ── Right — Mewtwo ── */}
+        {/* ── Right — Pikachu ── */}
         <div className="relative w-full md:w-[54%] flex items-center justify-center
-                        min-h-[55vw] sm:min-h-[45vw] md:min-h-0">
+                        min-h-[85vw] sm:min-h-[60vw] md:min-h-0 overflow-hidden">
 
           {/* Ambient glow */}
           <div
@@ -113,21 +113,21 @@ export default function HeroSection() {
 
           {/* Outer spinning ring */}
           <div className="ring-cw absolute pointer-events-none flex items-center justify-center" style={{
-            width: 'clamp(260px,46vw,560px)', height: 'clamp(260px,46vw,560px)',
+            width: 'clamp(200px,70vw,560px)', height: 'clamp(200px,70vw,560px)',
           }}>
             <div style={{ width:'100%', height:'100%', borderRadius:'50%', border:'1.5px dashed rgba(250,204,21,0.45)' }} />
           </div>
 
           {/* Inner counter-spinning ring */}
           <div className="ring-ccw absolute pointer-events-none flex items-center justify-center" style={{
-            width: 'clamp(180px,32vw,390px)', height: 'clamp(180px,32vw,390px)',
+            width: 'clamp(140px,50vw,390px)', height: 'clamp(140px,50vw,390px)',
           }}>
             <div style={{ width:'100%', height:'100%', borderRadius:'50%', border:'1.5px dashed rgba(234,179,8,0.35)' }} />
           </div>
 
           {/* Static solid ring */}
           <div className="absolute pointer-events-none" style={{
-            width: 'clamp(310px,54vw,640px)', height: 'clamp(310px,54vw,640px)',
+            width: 'clamp(240px,82vw,640px)', height: 'clamp(240px,82vw,640px)',
             borderRadius: '50%', border: '1px solid rgba(253,224,71,0.15)',
           }} />
 
@@ -137,7 +137,7 @@ export default function HeroSection() {
             alt="Pikachu"
             draggable={false}
             className="mewtwo-img relative z-10 select-none"
-            style={{ width: 'clamp(240px,48vw,640px)', height: 'auto' }}
+            style={{ width: 'clamp(180px,65vw,640px)', height: 'auto' }}
           />
 
           {/* Bottom fade into white */}
