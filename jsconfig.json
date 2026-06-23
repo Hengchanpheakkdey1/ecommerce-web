@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "moduleResolution": "bundler",
+    "checkJs": false,
+    "noUnusedLocals": false
+  },
+  "include": ["src"]
+}
