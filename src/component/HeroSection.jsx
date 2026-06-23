@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 
-const MEWTWO = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/150.png'
+const MEWTWO = 'https://www.vhv.rs/dpng/d/419-4191631_image-sonicwiki-png-mewtwo-transparent-png-download.png'
 
 export default function HeroSection() {
   return (
