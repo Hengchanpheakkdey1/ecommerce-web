@@ -60,9 +60,20 @@ export async function getCategories() {
   return res.json()
 }
 
+const DEAD_HOSTS = ['placeimg.com', 'lorempixel.com']
+
 export function cleanImage(raw) {
   if (!raw) return 'https://picsum.photos/seed/fallback/400/550'
   const str = Array.isArray(raw) ? raw[0] : raw
   const cleaned = String(str).replace(/[\[\]"\\]/g, '').trim()
-  return cleaned.startsWith('http') ? cleaned : 'https://picsum.photos/seed/fallback/400/550'
+  if (!cleaned.startsWith('http')) return 'https://picsum.photos/seed/fallback/400/550'
+  try {
+    const host = new URL(cleaned).hostname
+    if (DEAD_HOSTS.some(d => host === d || host.endsWith('.' + d))) {
+      return 'https://picsum.photos/seed/fallback/400/550'
+    }
+  } catch {
+    return 'https://picsum.photos/seed/fallback/400/550'
+  }
+  return cleaned
 }

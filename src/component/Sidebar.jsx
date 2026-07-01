@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router'
 import { getCategories, cleanImage } from '../services/api'
+import { useTheme } from '../context/ThemeContext'
+import { useCart } from '../context/CartContext'
 
-export default function Sidebar({ open, onToggle, currentUser, onLogout }) {
+export default function Sidebar({ open, onToggle, currentUser, onLogout, onCartOpen }) {
+  const { totalItems } = useCart()
+  const { dark, toggle: toggleTheme } = useTheme()
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
@@ -23,15 +27,32 @@ export default function Sidebar({ open, onToggle, currentUser, onLogout }) {
       {/* ── Mobile top bar ─────────────────────────────── */}
       <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-[#111] flex items-center justify-between px-5 py-4 border-b border-white/10">
         <Link to="/" className="text-xl font-black text-white tracking-tighter" onClick={closeOnMobile}>
-          John Cena
+          Hanzo
         </Link>
-        <button onClick={onToggle} className="text-white p-1">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            {open
-              ? <path d="M18 6L6 18M6 6l12 12" />
-              : <path d="M3 8h18M3 16h18" />}
-          </svg>
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onCartOpen}
+            className="relative text-gray-400 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-all"
+            aria-label="Open cart"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+              <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+            </svg>
+            {totalItems > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 bg-white text-gray-900 text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center leading-none">
+                {totalItems > 9 ? '9+' : totalItems}
+              </span>
+            )}
+          </button>
+          <button onClick={onToggle} className="text-white p-1">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              {open
+                ? <path d="M18 6L6 18M6 6l12 12" />
+                : <path d="M3 8h18M3 16h18" />}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* ── Mobile overlay ─────────────────────────────── */}
@@ -56,20 +77,41 @@ export default function Sidebar({ open, onToggle, currentUser, onLogout }) {
               onClick={closeOnMobile}
               className="text-2xl font-black text-white tracking-tighter hover:text-gray-300 transition-colors"
             >
-              John Cena
+              Hanzo
             </Link>
             <p className="text-[10px] text-gray-600 tracking-widest mt-0.5 uppercase">Athletic Wear</p>
           </div>
 
-          <button
-            onClick={onToggle}
-            title="Close sidebar"
-            className="text-gray-500 hover:text-white hover:bg-white/10 p-2 rounded-lg transition-all"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-          </button>
+          <div className="flex items-center gap-1">
+            {/* Cart button */}
+            <button
+              onClick={onCartOpen}
+              title="Cart"
+              className="relative text-gray-500 hover:text-white hover:bg-white/10 p-2 rounded-lg transition-all"
+              aria-label="Open cart"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+              </svg>
+              {totalItems > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 bg-white text-gray-900 text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center leading-none">
+                  {totalItems > 9 ? '9+' : totalItems}
+                </span>
+              )}
+            </button>
+
+            {/* Close sidebar */}
+            <button
+              onClick={onToggle}
+              title="Close sidebar"
+              className="text-gray-500 hover:text-white hover:bg-white/10 p-2 rounded-lg transition-all"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Scrollable nav */}
@@ -155,6 +197,33 @@ export default function Sidebar({ open, onToggle, currentUser, onLogout }) {
 
         {/* Bottom actions */}
         <div className="px-3 pb-5 pt-3 border-t border-white/10 flex flex-col gap-2">
+
+          {/* Theme toggle */}
+          <button
+            onClick={toggleTheme}
+            className="flex items-center justify-between w-full px-3 py-2.5 rounded-xl text-[11px] font-bold tracking-widest text-gray-500 hover:text-white hover:bg-white/10 transition-all"
+          >
+            <span className="flex items-center gap-2.5">
+              {dark ? (
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="5" />
+                  <line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+              ) : (
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+              {dark ? 'LIGHT MODE' : 'DARK MODE'}
+            </span>
+            <div className={`relative w-9 h-5 rounded-full transition-colors duration-300 ${dark ? 'bg-amber-400/70' : 'bg-white/20'}`}>
+              <div className={`absolute top-0.5 h-4 w-4 bg-white rounded-full shadow transition-transform duration-300 ${dark ? 'translate-x-4' : 'translate-x-0.5'}`} />
+            </div>
+          </button>
+
           <Link
             to="/create-product"
             onClick={closeOnMobile}
@@ -168,15 +237,24 @@ export default function Sidebar({ open, onToggle, currentUser, onLogout }) {
 
           {currentUser ? (
             <>
-              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5">
-                <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
-                  {currentUser.name?.[0]?.toUpperCase() || 'U'}
+              <Link
+                to="/profile"
+                onClick={closeOnMobile}
+                className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 transition-colors group"
+              >
+                <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center text-xs font-bold text-white flex-shrink-0 group-hover:ring-2 group-hover:ring-sky-400/50 transition-all overflow-hidden">
+                  {currentUser.avatar
+                    ? <img src={currentUser.avatar} alt="" className="w-full h-full object-cover" />
+                    : currentUser.name?.[0]?.toUpperCase() || 'U'}
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-[11px] font-semibold text-white truncate">{currentUser.name}</p>
                   <p className="text-[9px] text-gray-500 truncate">{currentUser.email}</p>
                 </div>
-              </div>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-600 group-hover:text-gray-400 flex-shrink-0 transition-colors">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </Link>
               <button
                 onClick={onLogout}
                 className="flex items-center gap-2 px-3 py-2.5 rounded-xl text-[11px] font-bold tracking-widest text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all w-full"

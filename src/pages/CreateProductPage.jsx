@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router'
 import { createProduct, getCategories } from '../services/api'
+import { useTheme } from '../context/ThemeContext'
 
 const EMPTY_FORM = {
   title: '',
@@ -25,6 +26,7 @@ function validate(form) {
 
 export default function CreateProductPage() {
   const navigate = useNavigate()
+  const { dark } = useTheme()
   const [form, setForm] = useState(EMPTY_FORM)
   const [errors, setErrors] = useState({})
   const [categories, setCategories] = useState([])
@@ -80,14 +82,14 @@ export default function CreateProductPage() {
   // ── Success screen ──────────────────────────────────────────────
   if (status === 'success' && createdProduct) {
     return (
-      <div style={{ backgroundColor: '#d5e0e8' }} className="min-h-screen flex items-center justify-center px-4">
-        <div className="bg-white rounded-3xl shadow-lg p-10 max-w-md w-full text-center">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+      <div className="bg-[#d5e0e8] dark:bg-neutral-950 transition-colors duration-300 min-h-screen flex items-center justify-center px-4">
+        <div className="bg-white dark:bg-neutral-900 rounded-3xl shadow-lg p-10 max-w-md w-full text-center">
+          <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-5">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.5">
               <path d="M20 6L9 17l-5-5" />
             </svg>
           </div>
-          <h2 className="text-2xl font-black text-gray-900 mb-2">Product Created!</h2>
+          <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-2">Product Created!</h2>
           <p className="text-sm text-gray-500 mb-1">
             <span className="font-semibold text-gray-800">{createdProduct.title}</span> was added successfully.
           </p>
@@ -119,34 +121,34 @@ export default function CreateProductPage() {
 
   // ── Form ───────────────────────────────────────────────────────
   return (
-    <div style={{ backgroundColor: '#d5e0e8' }} className="min-h-screen pt-10 pb-16">
+    <div className="bg-[#d5e0e8] dark:bg-neutral-950 transition-colors duration-300 min-h-screen pt-10 pb-16">
       <div className="max-w-2xl mx-auto px-6">
 
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-[11px] text-gray-500 mb-8 tracking-wider">
-          <Link to="/" className="hover:text-gray-800 transition-colors">HOME</Link>
+        <nav className="flex items-center gap-2 text-[11px] text-gray-500 dark:text-gray-400 mb-8 tracking-wider">
+          <Link to="/" className="hover:text-gray-800 dark:hover:text-gray-200 transition-colors">HOME</Link>
           <span>/</span>
-          <Link to="/shop" className="hover:text-gray-800 transition-colors">SHOP</Link>
+          <Link to="/shop" className="hover:text-gray-800 dark:hover:text-gray-200 transition-colors">SHOP</Link>
           <span>/</span>
-          <span className="text-gray-800 font-semibold">ADD PRODUCT</span>
+          <span className="text-gray-800 dark:text-gray-200 font-semibold">ADD PRODUCT</span>
         </nav>
 
         {/* Page title */}
         <div className="mb-8">
           <h1
-            className="font-black uppercase text-gray-900 leading-none"
+            className="font-black uppercase text-gray-900 dark:text-white leading-none"
             style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', letterSpacing: '-0.03em' }}
           >
             ADD NEW
             <br />
-            <span style={{ color: 'transparent', WebkitTextStroke: '2.5px #111' }}>PRODUCT</span>
+            <span style={{ color: 'transparent', WebkitTextStroke: `2.5px ${dark ? '#fff' : '#111'}` }}>PRODUCT</span>
           </h1>
           <p className="text-xs text-gray-500 mt-3 tracking-wider">Fill in the details below to add a product to the store.</p>
         </div>
 
         {/* Form card */}
         <form onSubmit={handleSubmit} noValidate>
-          <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 flex flex-col gap-7">
+          <div className="bg-white/70 dark:bg-white/5 backdrop-blur-sm rounded-3xl p-8 flex flex-col gap-7">
 
             {/* Title */}
             <div>
@@ -158,7 +160,7 @@ export default function CreateProductPage() {
                 value={form.title}
                 onChange={(e) => handleField('title', e.target.value)}
                 placeholder="e.g. ASRV x Equinox Lycra Set"
-                className={`w-full bg-neutral-100 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all border-2 ${
+                className={`w-full bg-neutral-100 dark:bg-neutral-800 rounded-xl px-4 py-3 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-all border-2 ${
                   errors.title ? 'border-red-400' : 'border-transparent focus:border-gray-400'
                 }`}
               />
@@ -180,7 +182,7 @@ export default function CreateProductPage() {
                     value={form.price}
                     onChange={(e) => handleField('price', e.target.value)}
                     placeholder="0.00"
-                    className={`w-full bg-neutral-100 rounded-xl pl-7 pr-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all border-2 ${
+                    className={`w-full bg-neutral-100 dark:bg-neutral-800 rounded-xl pl-7 pr-4 py-3 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-all border-2 ${
                       errors.price ? 'border-red-400' : 'border-transparent focus:border-gray-400'
                     }`}
                   />
@@ -195,7 +197,7 @@ export default function CreateProductPage() {
                 <select
                   value={form.categoryId}
                   onChange={(e) => handleField('categoryId', e.target.value)}
-                  className={`w-full bg-neutral-100 rounded-xl px-4 py-3 text-sm text-gray-900 outline-none transition-all border-2 appearance-none cursor-pointer ${
+                  className={`w-full bg-neutral-100 dark:bg-neutral-800 rounded-xl px-4 py-3 text-sm text-gray-900 dark:text-white outline-none transition-all border-2 appearance-none cursor-pointer ${
                     errors.categoryId ? 'border-red-400' : 'border-transparent focus:border-gray-400'
                   } ${!form.categoryId ? 'text-gray-400' : ''}`}
                 >
@@ -218,7 +220,7 @@ export default function CreateProductPage() {
                 value={form.description}
                 onChange={(e) => handleField('description', e.target.value)}
                 placeholder="Describe the product — materials, fit, features..."
-                className={`w-full bg-neutral-100 rounded-xl px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all border-2 resize-none ${
+                className={`w-full bg-neutral-100 dark:bg-neutral-800 rounded-xl px-4 py-3 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-all border-2 resize-none ${
                   errors.description ? 'border-red-400' : 'border-transparent focus:border-gray-400'
                 }`}
               />
@@ -246,7 +248,7 @@ export default function CreateProductPage() {
                         value={url}
                         onChange={(e) => handleImageChange(i, e.target.value)}
                         placeholder={`https://example.com/image-${i + 1}.jpg`}
-                        className={`w-full bg-neutral-100 rounded-xl pl-9 pr-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all border-2 ${
+                        className={`w-full bg-neutral-100 dark:bg-neutral-800 rounded-xl pl-9 pr-4 py-3 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 outline-none transition-all border-2 ${
                           errors.images ? 'border-red-400' : 'border-transparent focus:border-gray-400'
                         }`}
                       />
@@ -255,7 +257,7 @@ export default function CreateProductPage() {
                       <button
                         type="button"
                         onClick={() => removeImageField(i)}
-                        className="flex-shrink-0 w-9 h-9 bg-neutral-100 rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+                        className="flex-shrink-0 w-9 h-9 bg-neutral-100 dark:bg-neutral-800 rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
                       >
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                           <path d="M18 6L6 18M6 6l12 12" />

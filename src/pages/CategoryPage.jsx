@@ -14,7 +14,7 @@ export default function CategoryPage() {
   }, [id])
 
   return (
-    <div style={{ backgroundColor: '#d5e0e8' }} className="pt-10">
+    <div className="bg-[#d5e0e8] dark:bg-neutral-950 transition-colors duration-300 pt-10">
       <div className="text-center py-10 px-4">
         {category?.image && (
           <div className="w-16 h-16 rounded-2xl overflow-hidden mx-auto mb-4 shadow-md">
@@ -22,7 +22,7 @@ export default function CategoryPage() {
           </div>
         )}
         <h1
-          className="font-black uppercase text-gray-900 leading-none"
+          className="font-black uppercase text-gray-900 dark:text-white leading-none"
           style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', letterSpacing: '-0.03em' }}
         >
           {category ? category.name.toUpperCase() : '...'}

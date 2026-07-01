@@ -60,7 +60,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-[10px] text-gray-500">© 2026 VEXO. All rights reserved.</p>
+          <p className="text-[10px] text-gray-500">© 2026 Hanzo. All rights reserved.</p>
           <div className="flex gap-6">
             {['Privacy', 'Terms', 'Cookies'].map((item) => (
               <a key={item} href="#" className="text-[10px] text-gray-500 hover:text-gray-300 transition-colors">

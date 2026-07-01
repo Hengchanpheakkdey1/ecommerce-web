@@ -22,7 +22,7 @@ export default function ProductGrid({
   }, [categoryId, limit])
 
   return (
-    <section className="bg-neutral-100 px-6 py-14">
+    <section className="bg-neutral-100 dark:bg-neutral-900 transition-colors duration-300 px-6 py-14">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <div className="flex items-start justify-between mb-2">
@@ -36,7 +36,7 @@ export default function ProductGrid({
 
         {/* Main heading */}
         <h2
-          className="font-black uppercase text-center text-gray-900 leading-tight mb-10"
+          className="font-black uppercase text-center text-gray-900 dark:text-white leading-tight mb-10"
           style={{ fontSize: 'clamp(1.8rem, 4vw, 3.5rem)', letterSpacing: '-0.02em' }}
         >
           {title.split(' ').map((word, i) => (
@@ -52,7 +52,7 @@ export default function ProductGrid({
         {loading && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[...Array(8)].map((_, i) => (
-              <div key={i} className="rounded-2xl bg-neutral-200 animate-pulse" style={{ aspectRatio: '3/4' }} />
+              <div key={i} className="rounded-2xl bg-neutral-200 dark:bg-neutral-800 animate-pulse" style={{ aspectRatio: '3/4' }} />
             ))}
           </div>
         )}
