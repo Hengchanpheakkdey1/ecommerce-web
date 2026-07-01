@@ -1,10 +1,11 @@
 import { Link } from 'react-router'
+import pikachuImg from '../assets/pikachu.png'
 
-const HERO_MON = 'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/025.png'
+const HERO_MON = pikachuImg
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-white" style={{ minHeight: '100svh' }}>
+    <section className="relative bg-white dark:bg-neutral-950 transition-colors duration-300" style={{ minHeight: '100svh' }}>
 
       <style>{`
         @keyframes pika-float {
@@ -34,13 +35,13 @@ export default function HeroSection() {
 
           {/* Label */}
           <div className="inline-flex items-center gap-2 mb-4 md:mb-8 self-start">
-            <span className="w-1.5 h-1.5 rounded-full bg-gray-900 flex-shrink-0" />
+            <span className="w-1.5 h-1.5 rounded-full bg-gray-900 dark:bg-gray-400 flex-shrink-0" />
             <span className="text-[11px] font-semibold tracking-[0.18em] text-gray-400 uppercase">New Season · 2025</span>
           </div>
 
           {/* Heading */}
           <h1
-            className="font-black leading-[0.88] tracking-tight text-gray-900 mb-3 md:mb-6"
+            className="font-black leading-[0.88] tracking-tight text-gray-900 dark:text-white mb-3 md:mb-6"
             style={{ fontSize: 'clamp(2.6rem, 5.2vw, 6.5rem)' }}
           >
             Gear Up<br />Every<br />Season
@@ -53,10 +54,10 @@ export default function HeroSection() {
 
           {/* Buttons */}
           <div className="flex items-center gap-4 mb-6 md:mb-16">
-            <Link to="/shop" className="bg-gray-900 text-white text-sm font-semibold px-6 md:px-7 py-3 md:py-3.5 rounded-full hover:bg-black transition-colors">
+            <Link to="/shop" className="bg-gray-900 text-white text-sm font-semibold px-6 md:px-7 py-3 md:py-3.5 rounded-full hover:bg-black dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 transition-colors">
               Shop Now
             </Link>
-            <Link to="/shop" className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-400 hover:text-gray-900 transition-colors">
+            <Link to="/shop" className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
               Explore All
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7" />
@@ -65,20 +66,20 @@ export default function HeroSection() {
           </div>
 
           {/* Stats */}
-          <div className="flex items-center gap-4 md:gap-5 pt-5 md:pt-7 border-t border-gray-100">
+          <div className="flex items-center gap-4 md:gap-5 pt-5 md:pt-7 border-t border-gray-100 dark:border-white/10">
             <div>
-              <p className="text-lg md:text-xl font-black text-gray-900">2,400+</p>
-              <p className="text-[10px] font-medium text-gray-400 tracking-widest uppercase mt-0.5">Products</p>
+              <p className="text-lg md:text-xl font-black text-gray-900 dark:text-white">2,400+</p>
+              <p className="text-[10px] font-medium text-gray-400 dark:text-gray-300 tracking-widest uppercase mt-0.5">Products</p>
             </div>
-            <div className="w-px h-7 bg-gray-100" />
+            <div className="w-px h-7 bg-gray-100 dark:bg-white/10" />
             <div>
-              <p className="text-lg md:text-xl font-black text-gray-900">12</p>
-              <p className="text-[10px] font-medium text-gray-400 tracking-widest uppercase mt-0.5">Categories</p>
+              <p className="text-lg md:text-xl font-black text-gray-900 dark:text-white">12</p>
+              <p className="text-[10px] font-medium text-gray-400 dark:text-gray-300 tracking-widest uppercase mt-0.5">Categories</p>
             </div>
-            <div className="w-px h-7 bg-gray-100" />
+            <div className="w-px h-7 bg-gray-100 dark:bg-white/10" />
             <div>
-              <p className="text-lg md:text-xl font-black text-gray-900">Free</p>
-              <p className="text-[10px] font-medium text-gray-400 tracking-widest uppercase mt-0.5">Shipping</p>
+              <p className="text-lg md:text-xl font-black text-gray-900 dark:text-white">Free</p>
+              <p className="text-[10px] font-medium text-gray-400 dark:text-gray-300 tracking-widest uppercase mt-0.5">Shipping</p>
             </div>
           </div>
         </div>
